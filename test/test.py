@@ -28,7 +28,7 @@ async def test_tt_um_ALU(dut):
     for opcode in range(9):
         dut.uio_in.value = opcode
         for i in range(16):
-            dut.ui_in.value = input_val[i] << 4
+            dut.ui_in.value = input_val[i] << 5
             for j in range(16):
                 dut.ui_in.value &= 0xF0
                 dut.ui_in.value |= input_val[j]
