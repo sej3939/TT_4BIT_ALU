@@ -20,7 +20,7 @@ async def test_tt_um_ALU(dut):
 
     # Helper function to display results
     def display_result(op_name):
-        print(f"{op_name}: result = {dut.uo_out.value}, uio_out = {dut.uio_out.value}")
+        print(f"{op_name}: result = {dut.uo_out.value}, uio_out = {dut.uio_out.value}, ui_in = {dut.uin_out.value}")
 
     opcode = [i for i in range(9)]
     input_val = [i for i in range(16)]
@@ -28,18 +28,16 @@ async def test_tt_um_ALU(dut):
     for opcode in range(9):
         dut.uio_in.value = opcode
         for i in range(16):
-            dut.ui_in.value = input_val[i] << 5
             for j in range(16):
-                dut.ui_in.value &= 0xF0
-                dut.ui_in.value |= input_val[j]
+                dut.ui_in.value = input_val[i] << 4 | input_val[j]
                 await Timer(50, units='ns')
                 match opcode:
                     case 0: # ADD
                         display_result("ADD")
-                        assert dut.uo_out.value == input_val[i] + input_val[j]
+                        assert dut.uo_out.value == (input_val[i] + input_val[j]) % 16
                     case 1: # SUB
                         display_result("SUB")
-                        assert dut.uo_out.value == input_val[i] - input_val[j]
+                        assert dut.uo_out.value == input_val[i] - input_val[j]) % 16
                     case 2: # MUL
                         display_result("MUL")
                         assert dut.uo_out.value == input_val[i] * input_val[j]
