@@ -20,7 +20,7 @@ async def test_tt_um_ALU(dut):
 
     # Helper function to display results
     def display_result(op_name):
-        print(f"{op_name}: result = {dut.uo_out.value}, uio_out = {dut.uio_out.value}, ui_in = {dut.uin_out.value}")
+        print(f"{op_name}: result = {dut.uo_out.value}, uio_out = {dut.uio_out.value}, ui_in = {dut.ui_in.value}")
 
     opcode = [i for i in range(9)]
     input_val = [i for i in range(16)]
