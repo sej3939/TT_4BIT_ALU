@@ -43,7 +43,7 @@ async def test_tt_um_ALU(dut):
                         assert dut.uo_out.value == input_val[i] * input_val[j]
                     case 3: # DIV
                         display_result("DIV")
-                        assert dut.uo_out.value == (input_val[i] % input_val[j]) << 4 | (input_val[i] // input_val[j]) if (input_val[j] == 0) else dut.uo_out.value == 0
+                        assert dut.uo_out.value == (input_val[i] % input_val[j]) << 4 | (input_val[i] // input_val[j]) if (input_val[j] != 0) else dut.uo_out.value == 0
                     case 4: # AND
                         display_result("AND")
                         assert dut.uo_out.value == input_val[i] & input_val[j]
@@ -55,7 +55,7 @@ async def test_tt_um_ALU(dut):
                         assert dut.uo_out.value == input_val[i] & input_val[j]
                     case 7: # NOT
                         display_result("NOT")
-                        assert dut.uo_out.value == ~input_val[i]
+                        assert dut.uo_out.value == ~input_val[i] & 0b1111;
                     case 8: # ENC
                         display_result("ENC")
                         assert dut.uo_out.value == (input_val[i] << 4 | input_val[j]) ^ ENC_KEY
