@@ -52,7 +52,7 @@ async def test_tt_um_ALU(dut):
                         assert dut.uo_out.value == input_val[i] | input_val[j]
                     case 6: # XOR
                         display_result("XOR")
-                        assert dut.uo_out.value == input_val[i] & input_val[j]
+                        assert dut.uo_out.value == input_val[i] ^ input_val[j]
                     case 7: # NOT
                         display_result("NOT")
                         assert dut.uo_out.value == ~input_val[i] & 0b1111;
