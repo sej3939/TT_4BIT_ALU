@@ -27,37 +27,37 @@ async def test_tt_um_ALU(dut):
 
     for opcode in range(9):
         dut.uio_in.value = opcode
-        for val1 in range(16):
-            dut.ui_in.value = val1 << 4
-            for val2 in range(16):
+        for i in range(16):
+            dut.ui_in.value = input_val[i] << 4
+            for j in range(16):
                 dut.ui_in.value &= 0xF0
-                dut.ui_in.value |= val2
+                dut.ui_in.value |= input_val[j]
                 await Timer(50, units='ns')
                 match opcode:
                     case 0: # ADD
                         display_result("ADD")
-                        assert dut.uo_out.value == val1 + val2
+                        assert dut.uo_out.value == input_val[i] + input_val[j]
                     case 1: # SUB
                         display_result("SUB")
-                        assert dut.uo_out.value == val1 - val2
+                        assert dut.uo_out.value == input_val[i] - input_val[j]
                     case 2: # MUL
                         display_result("MUL")
-                        assert dut.uo_out.value == val1 * val2
+                        assert dut.uo_out.value == input_val[i] * input_val[j]
                     case 3: # DIV
                         display_result("DIV")
-                        assert dut.uo_out.value == (val1 % val2) << 4 | (val1 // val2)
+                        assert dut.uo_out.value == (input_val[i] % input_val[j]) << 4 | (input_val[i] // input_val[j])
                     case 4: # AND
                         display_result("AND")
-                        assert dut.uo_out.value == val1 & val2
+                        assert dut.uo_out.value == input_val[i] & input_val[j]
                     case 5: # OR
                         display_result("OR")
-                        assert dut.uo_out.value == val1 | val2
+                        assert dut.uo_out.value == input_val[i] | input_val[j]
                     case 6: # XOR
                         display_result("XOR")
-                        assert dut.uo_out.value == val1 & val2
+                        assert dut.uo_out.value == input_val[i] & input_val[j]
                     case 7: # NOT
                         display_result("NOT")
-                        assert dut.uo_out.value == ~val1
+                        assert dut.uo_out.value == ~input_val[i]
                     case 8: # ENC
                         display_result("ENC")
-                        assert dut.uo_out.value == (val1 << 4 | val2) ^ ENC_KEY
+                        assert dut.uo_out.value == (input_val[i] << 4 | input_val[j]) ^ ENC_KEY
