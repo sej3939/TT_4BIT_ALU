@@ -37,7 +37,7 @@ async def test_tt_um_ALU(dut):
                         assert dut.uo_out.value == (input_val[i] + input_val[j]) % 16
                     case 1: # SUB
                         display_result("SUB")
-                        assert dut.uo_out.value == input_val[i] - input_val[j]) % 16
+                        assert dut.uo_out.value == (input_val[i] - input_val[j]) % 16
                     case 2: # MUL
                         display_result("MUL")
                         assert dut.uo_out.value == input_val[i] * input_val[j]
