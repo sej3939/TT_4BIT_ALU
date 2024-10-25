@@ -9,7 +9,7 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-4-bit ALU with ADD, SUB, MUL, DIV, AND, OR, XOR, NOT, and ENC instructions. Addition (ADD) and subtraction (SUB) results in a 4-bit output. Multiplicatoin (MUL) results in an 8-bit output. Division (DIV) results in an 8-bit output, with the most significant four bits being the remainder and the least significant four bits being the quotient. AND, OR, XOR results in a 4-bit output. NOT results in a 4-bit output using only the first input. Encryption (ENC) results in a 8-bit output that is the XOR of 0xAB and the concatenation of the two inputs.
+4-bit ALU with ADD, SUB, MUL, DIV, AND, OR, XOR, NOT, and ENC instructions. Addition (ADD) and subtraction (SUB) results in a 4-bit output. Multiplication (MUL) results in an 8-bit output. Division (DIV) results in an 8-bit output, with the most significant four bits being the remainder and the least significant four bits being the quotient. AND, OR, XOR results in a 4-bit output. NOT results in a 4-bit output using only the first input. Encryption (ENC) results in a 8-bit output that is the XOR of 0xAB and the concatenation of the two inputs.
 
 ## How to test
 
